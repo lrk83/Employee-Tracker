@@ -13,11 +13,11 @@ VALUES
     ('Researcher', 25.00, 3),
     ('Senior Researcher', 30.00, 3);
 
-INSERT INTO  employees (first_name, last_name, role_id, manager)
+INSERT INTO  employees (first_name, last_name, role_id, manager_id)
 VALUES 
-    ('Sam', 'Sheapard', 1, 3),
-    ('Thomas', 'Sheapard', 1, 3),
     ('Alicia', 'Sheapard', 2, Null),
+    ('Sam', 'Sheapard', 1, 1),
+    ('Thomas', 'Sheapard', 1, 1),
     ('Dana', 'Delanor', 3, Null),
     ('Daniel', 'Delanor', 3, 4),
     ('Thomas','Delany', 4, Null),
