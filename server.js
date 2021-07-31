@@ -1,5 +1,8 @@
+const {viewAllDepartments, viewAllEmployees, viewAllRoles, addDepartment} = require('./utils/queries');
+
 const express = require('express');
 const mysql = require('mysql2');
+const cTable = require('console.table');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -17,9 +20,3 @@ const db = mysql.createConnection(
     },
     console.log('Connected to the employee_tracker_db database')
 );
-
-//Query employees
-db.query('SELECT * FROM employees', function (err, results) {
-    console.log(results);
-});
-
