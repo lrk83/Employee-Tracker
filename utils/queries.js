@@ -5,6 +5,10 @@ const cTable = require('console.table');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//vars for global scope
+var managerID=0;
+var employeeID=0;
+
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -121,24 +125,103 @@ const addDepartment = (params) => {
 };
 
 //Add a role
-const addRole = (params) => {
+const addRole = (name, salary, department) => {
 
-    return db.promise().query('INSERT INTO roles (name, salary, department_id) VALUES (?,?,?)',params);
+    getDepartmentID(department)
+        .then(([rows, fields]) => {
 
+        params = [name,salary,rows[0].id];
+
+        return db.promise().query('INSERT INTO roles (title, salary, department_id) VALUES (?,?,?)',params);
+        });
 };
 
 //Add an employee
-const addEmployee = (params) => {
+const addEmployee = (first, last, role, manager) => {
 
-    return db.promise().query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?,?,?)',params);
+    return getEmployeeID(manager)
+        .then(([rows,fields]) => {
+
+        if (!rows){
+            managerID=null;
+        }else{
+            managerID=rows[0].id
+        }
+
+        return getRoleID(role)})
+            .then(([rows,fields]) => {
+
+            params = [first, last, rows[0].id,managerID];
+
+            return db.promise().query('UPDATE employees ',params);
+        });
 
 };
 
 //Update an employee
-const updateEmployee = (params) => {
+const updateEmployee = (name, newRole) => {
 
-    return db.promise().query('UPDATE employees SET role_id =? WHERE id=?',params);
+    return getEmployeeID(name)
+        .then(([rows,fields]) => {
+
+            employeeID=rows[0].id;
+
+            return getRoleID(role)})
+        .then(([rows,fields]) => {
+
+            params = [first, last, rows[0].id,employeeID];
+
+            return db.promise().query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',params);
+        });
 
 };
 
-module.exports = {viewAllDepartments, viewAllEmployees, viewAllRoles, addDepartment, addRole, addEmployee, updateEmployee}
+//Helper funtcions for passing around data
+const getDepartments = () => {
+
+    let returnData = [];
+
+    db.query('SELECT * FROM departments', (err,result) => {
+           
+        for (x=0;x< result.length; x++){
+            returnData.push(result[x].name)
+        }
+    });
+
+    return returnData;
+};
+
+const getEmployees = () => {
+
+    return db.promise().query('SELECT first_name FROM employees')
+
+};
+
+const getRoleID = (role) =>{
+
+    return db.promise().query('SELECT * FROM roles WHERE title = ?',role);
+};
+
+const getDepartmentID = (name) => {
+
+    return db.promise().query('SELECT * FROM departments WHERE name = ?',name)
+
+};
+
+const getRoles = () => {
+
+    return db.promise().query('SELECT * FROM roles');
+
+};
+
+const getEmployeeID = (name) => {
+
+    if (name===null){
+        return null;
+    };
+
+    return db.promise().query('SELECT * FROM employees WHERE first_name = ?',name)
+
+};
+
+module.exports = {viewAllDepartments, viewAllEmployees, viewAllRoles, addDepartment, addRole, addEmployee, updateEmployee, getDepartments, getEmployees, getRoles}
