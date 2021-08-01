@@ -107,8 +107,6 @@ View All Employees
                 updatedResults.push(newRow);
             };
 
-            console.table(updatedResults);
-
             console.log(`
             
             (click up or down to choose another option)

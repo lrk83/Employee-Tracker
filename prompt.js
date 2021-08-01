@@ -120,15 +120,11 @@ Role successfully added!
 
                 let textRowData = rows;
 
-                console.log(managerChoices);
-
                 let roleChoices=[];
 
                 for (x=0;x<textRowData.length;x++){
                     roleChoices.push(textRowData[x].title);
                 };
-
-                console.log(roleChoices);
                 
                 return inquirer.prompt([
                 {
@@ -185,13 +181,9 @@ Employee successfully added!
 
             let roleChoices=[];
 
-            console.log(employeeChoices);
-
             for (x=0;x<textRowData.length;x++){
                 roleChoices.push(textRowData[x].title);
             };
-
-            console.log(roleChoices);
      
             return inquirer.prompt([
                 {
