@@ -166,12 +166,12 @@ const updateEmployee = (name, newRole) => {
 
             employeeID=rows[0].id;
 
-            return getRoleID(role)})
+            return getRoleID(newRole)})
         .then(([rows,fields]) => {
 
-            params = [first, last, rows[0].id,employeeID];
+            params = [rows[0].id,employeeID];
 
-            return db.promise().query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',params);
+            return db.promise().query('UPDATE employees SET role_id =? WHERE id=?',params);
         });
 
 };

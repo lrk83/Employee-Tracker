@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addRole, addEmployee, getDepartments, getEmployees, getRoles} = require('./utils/queries');
+const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addRole, addEmployee, getDepartments, getEmployees, getRoles, updateEmployee} = require('./utils/queries');
 
 //vars for global scope
 var managerChoices = [];
@@ -168,7 +168,7 @@ Employee successfully added!
     };
 
     //Update an Employee's Role
-    if (choice.option==="Update an Employee's Role "){
+    if (choice.option==="Update an Employee's Role"){
         
             return getEmployees()
         .then(([rows, fields]) => {
@@ -185,9 +185,13 @@ Employee successfully added!
 
             let roleChoices=[];
 
+            console.log(employeeChoices);
+
             for (x=0;x<textRowData.length;x++){
                 roleChoices.push(textRowData[x].title);
             };
+
+            console.log(roleChoices);
      
             return inquirer.prompt([
                 {
