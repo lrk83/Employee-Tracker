@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addRole, addEmployee, getDepartments, getEmployees, getRoles, updateEmployee} = require('./utils/queries');
+const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addRole, addEmployee, getDepartments, getEmployees, getRoles, updateEmployee} = require('./queries');
 
 //vars for global scope
 var managerChoices = [];
