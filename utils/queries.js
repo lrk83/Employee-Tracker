@@ -107,6 +107,8 @@ View All Employees
                 updatedResults.push(newRow);
             };
 
+            console.table(updatedResults);
+
             console.log(`
             
             (click up or down to choose another option)
@@ -151,7 +153,7 @@ const addEmployee = (first, last, role, manager) => {
 
             params = [first, last, rows[0].id,managerID];
 
-            return db.promise().query('UPDATE employees ',params);
+            return db.promise().query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',params);
         });
 
 };
