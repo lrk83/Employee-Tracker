@@ -1,4 +1,4 @@
-const {promptOptions, queryDB} = require('./prompt');
+const {promptOptions, queryDB} = require('./utils/prompt');
 
 const express = require('express');
 const mysql = require('mysql2');
