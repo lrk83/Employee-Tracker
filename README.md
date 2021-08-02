@@ -15,4 +15,5 @@ The database includes references between the different data types, so that it tr
 
 ##Screenshots
 
-![Command Line Application]()
+![Command Line Options](https://github.com/lrk83/Employee-Tracker/blob/main/screenshots/Screen%20Shot%202021-08-01%20at%209.34.47%20PM.png)
+![View All Employees](https://github.com/lrk83/Employee-Tracker/blob/main/screenshots/Screen%20Shot%202021-08-01%20at%209.35.01%20PM.png)
