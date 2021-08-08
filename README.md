@@ -1,7 +1,5 @@
 # Employee-Tracker
 
-# Team-Profile-Generator
-
 ## Video Walk Through (Click image to view)
 [![Screen Capture](https://img.youtube.com/vi/jnOR-ecExaM/0.jpg)](https://youtu.be/jnOR-ecExaM)
 
